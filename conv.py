@@ -27,7 +27,7 @@ def json2fix(s):
 		ret += str(tag)+'='+str(value)+str(d['dlm'])
 	return ret
 
-st='{"OrderID":1,"MsgType":"NewOrderSingle","SenderCompID":"sk96","Symbol":"GOOGL","Side":1,"Price":80,"OrderQty":30,"SendingTime":"20071123-05:30:00.000"}'
-s='{"order_id":1,"user_id":"sk96","product_id":"GOOGL","side":0,"ask_price":80,"total_qty":30,"order_stamp":"20071123-05:30:00.000","state":4,"type":1}'
+#s='{"OrderID":1,"MsgType":"NewOrderSingle","SenderCompID":"sk96","Symbol":"GOOGL","Side":1,"Price":80,"OrderQty":30,"SendingTime":"20071123-05:30:00.000"}'
+s='{"order_id":1,"user_id":"sk96","product_id":"GOOGL","side":0,"ask_price":80,"total_qty":30,"order_stamp":"20071123-05:30:00.000","type":1}'
 res = json2fix(s)
 print(res)
