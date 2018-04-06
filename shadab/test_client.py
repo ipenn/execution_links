@@ -23,13 +23,12 @@ def main():
 				if cmd == 'r':
 					# replace order
 					s={"order_id":"3","user_id":"sk96","product_id":"GOOGL","side":"0","ask_price":"80","total_qty":"40","order_stamp":"20071123-05:30:00.000","type":"2", "OrigClOrdID": "1"}
-					application.replace_order('1')
+					application.replace_order(s)
 				if cmd == 'm':
 					# market data request
 					application.market_data_request()
 	except (fix.ConfigError, fix.RuntimeError), e:
 		print(e)
-		return client, application
 
 if __name__ == '__main__':
     main()
