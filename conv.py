@@ -16,7 +16,7 @@ def seek(s, kv):
 def json2fix(s):
 	ret = '8=FIX.'+str(d['fix_version'])+str(d['dlm'])
 	req_dict = json.loads(s)
-#	print(json.dumps(req_dict, indent=4)
+	#print(json.dumps(req_dict, indent=4))
 	for k,v in req_dict.items():
 		tag = seek(k, 'tag_dict')
 		value = seek(v, 'msg_dict')
