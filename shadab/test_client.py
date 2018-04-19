@@ -1,8 +1,5 @@
 from __future__ import print_function
 import client as c
-# import quickfix as fix
-# import time
-# import quickfix44 as fix44
 
 def main():
 	try:

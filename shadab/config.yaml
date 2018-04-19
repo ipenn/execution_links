@@ -1,6 +1,17 @@
 fix_version: 4.4
 dlm: '|'
 tag_dict: 
+  TransactTime: 60
+  OrdStatus: 39
+  OrdType: 40
+  ExecType: 150
+  LeavesQty: 151
+  CheckSum: 10
+  ClOrdID: 11
+  CumQty: 14
+  ExecID: 17
+  MsgSeqNum: 34
+  TargetCompID: 56
   type: 35
   order_id: 37
   total_qty: 38

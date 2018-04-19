@@ -2,6 +2,7 @@ from __future__ import print_function
 import quickfix as fix
 import time
 import quickfix44 as fix44
+import fix2json as f2j
 
 
 class Application(fix.Application):
@@ -39,6 +40,13 @@ class Application(fix.Application):
     def fromApp(self, message, sessionID): 
         print('Application - fromApp', sessionID)
         print(message)
+        # convert fix to json here
+        message_str = ['|' if ord(x)==1 else x for x in message.toString()]
+        message_str = ''.join(message_str)
+        json_msg = f2j.fix2json(message_str)
+        print(json_msg)
+        # call OME API
+        ## TODO
         print(self.get_header_value(message, fix.MsgType()))
         return
 
