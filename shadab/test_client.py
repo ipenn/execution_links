@@ -9,9 +9,13 @@ def main():
 				if cmd == 'x':
 					client.stop()
 					break
-				if cmd == 'n':
+				if cmd == 'nb':
 					# new order
 					s={"order_id":"1","user_id":"sk96","product_id":"GOOGL","side":"0","ask_price":"80","total_qty":"30","order_stamp":"20071123-05:30:00.000","type":"1"}
+					application.new_order(s)
+				if cmd == 'ns':
+					# new order
+					s={"order_id":"2","user_id":"sk96","product_id":"GOOGL","side":"1","ask_price":"80","total_qty":"30","order_stamp":"20071123-05:30:00.000","type":"1"}
 					application.new_order(s)
 				if cmd == 'c':
 					# cancel order
