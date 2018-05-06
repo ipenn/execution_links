@@ -44,8 +44,8 @@ def fix2json(fix_msg):
 			equi_json[inv_config_dict[entity[0]]] = entity[1]
 
 	#print equi_json
-	return equi_json
+	return str(equi_json)
 
 
 
-fix2json("8=FIX.4.4|49=sk96|55=GOOGL|37=1|44=80|52=20071123-05:30:00.000|38=30|35=1|54=0|")
+#print fix2json("8=FIX.4.4|49=sk96|55=GOOGL|37=1|44=80|52=20071123-05:30:00.000|38=30|35=1|54=0|")

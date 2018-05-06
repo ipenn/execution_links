@@ -44,15 +44,16 @@ class Application(fix.Application):
         message_str = ['|' if ord(x)==1 else x for x in message.toString()]
         message_str = ''.join(message_str)
         json_msg = f2j.fix2json(message_str)
-        # if val.validate_json(json_msg):
-        if True:
+        status, error_msg = val.validate_json(json_msg)
+        if status:
             print(json_msg)
             # call OME API
             ## TODO
             print(self.get_header_value(message, fix.MsgType()))
         else:
-            pass
             # raise error
+            print("JSON not valid")
+            print(error_msg)
         return
 
     def get_header_value(self, message, field): 
