@@ -4,6 +4,7 @@ tag_dict:
   TransactTime: 60
   OrdStatus: 39
   OrdType: 40
+  OrigClOrdId: 41
   ExecType: 150
   LeavesQty: 151
   CheckSum: 10

@@ -1,4 +1,5 @@
 from fix2json import config_dict
+import json
 
 def validate_json(json_msg):
     """

@@ -5,7 +5,6 @@ import quickfix44 as fix44
 import fix2json as f2j
 import validate as val
 
-
 class Application(fix.Application):
     
     orderID = 0
@@ -45,14 +44,15 @@ class Application(fix.Application):
         message_str = ['|' if ord(x)==1 else x for x in message.toString()]
         message_str = ''.join(message_str)
         json_msg = f2j.fix2json(message_str)
-        if val.validate_json(json_msg):
+        # if val.validate_json(json_msg):
+        if True:
             print(json_msg)
-            # call OM API
+            # call OME API
             ## TODO
             print(self.get_header_value(message, fix.MsgType()))
         else:
             pass
-            # Raise error
+            # raise error
         return
 
     def get_header_value(self, message, field): 
@@ -82,14 +82,19 @@ class Application(fix.Application):
     def new_order(self, s):
         order_message = self.start_new_message(fix.MsgType_NewOrderSingle)
         message_fields = {
-            fix.ClOrdID:s["order_id"],
+            # fix.ClOrdID:self.gen_orderID(),
+            # s='{"order_id":1,"user_id":"sk96","product_id":"GOOGL","side":0,"ask_price":80,
+            # "total_qty":30,"order_stamp":"20071123-05:30:00.000","type":1}'
+            fix.ClOrdID:str(s["order_id"]),
             fix.HandlInst:fix.HandlInst_MANUAL_ORDER_BEST_EXECUTION,
-            fix.Symbol:s["product_id"],
+            fix.Symbol:str(s["product_id"]),
             fix.Side:fix.Side_BUY if s["side"] == "0" else fix.Side_SELL,
             fix.OrdType:fix.OrdType_LIMIT,
             fix.OrderQty:float(s["total_qty"]),
             fix.Price:float(s["ask_price"]),
         }
+	print("==================")
+	print(message_fields)
         for k, v in message_fields.items():
             order_message.setField(k(v))
         print(order_message.toString())
@@ -98,9 +103,9 @@ class Application(fix.Application):
     def cancel_order(self, s):
         order_message = self.start_new_message(fix.MsgType_OrderCancelRequest)
         message_fields = {
-            fix.ClOrdID:s["order_id"],
-            fix.OrigClOrdID:s["OrigClOrdID"],
-            fix.Symbol:s["product_id"],
+            fix.ClOrdID:str(s["order_id"]),
+            fix.OrigClOrdID:str(s["OrigClOrdID"]),
+            fix.Symbol:str(s["product_id"]),
             fix.Side:fix.Side_BUY if s["side"] == "0" else fix.Side_SELL,
             fix.OrderQty:float(s["total_qty"]),
         }
@@ -112,10 +117,10 @@ class Application(fix.Application):
     def replace_order(self, s):
         order_message = self.start_new_message(fix.MsgType_OrderCancelReplaceRequest)
         message_fields = {
-            fix.ClOrdID:s["order_id"],
-            fix.OrigClOrdID:s["OrigClOrdID"],
+            fix.ClOrdID:str(s["order_id"]),
+            fix.OrigClOrdID:str(s["OrigClOrdID"]),
             fix.HandlInst:fix.HandlInst_MANUAL_ORDER_BEST_EXECUTION,
-            fix.Symbol:s["product_id"],
+            fix.Symbol:str(s["product_id"]),
             fix.Side:fix.Side_BUY if s["side"] == "0" else fix.Side_SELL,
             fix.OrdType:fix.OrdType_LIMIT,
             fix.OrderQty:float(s["total_qty"]),

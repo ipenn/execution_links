@@ -55,7 +55,7 @@ def new_order():
         raise BadRequest()
 
 
-@app.route('/api/v1/update_order/<int:id>',  methods=['DELETE', 'PUT'])
+@app.route('/api/v1/update_order/<int: id>',  methods=['DELETE', 'PUT'])
 def update_order():
     if request.method == 'DELETE':
         if True:  # check condition if the request can be deleted
@@ -83,7 +83,7 @@ def update_order():
 def fill_data():
     # read data and convert to Json
     # send a post http call to OME with that json
-    pass
+
 
 
 if __name__ == "__main__":
