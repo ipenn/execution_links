@@ -1,10 +1,12 @@
 from __future__ import print_function
 import quickfix as fix
 import time
+import requests
 import quickfix44 as fix44
 import fix2json as f2j
 import validate as val
 import connection as conn
+import json
 
 app, db, Order = conn.init_conn()
 
@@ -50,7 +52,10 @@ class Application(fix.Application):
         message_str = ['|' if ord(x)==1 else x for x in message.toString()]
         message_str = ''.join(message_str)
         json_msg = f2j.fix2json(message_str)
+        print ("response from Matching Engine => ",json_msg)
         status, error_msg = val.validate_json(json_msg)
+        json_msg["side"] -= 1 # translate ME to OME standards
+        print("status--->", status)
         if status:
             OrdStatus = json_msg["OrdStatus"]
             if(OrdStatus == '0'): # new
@@ -76,9 +81,12 @@ class Application(fix.Application):
                 order = Order.query.filter_by(order_id=json_msg['ClOrdID']).first()
                 order.status = '2'
                 db.session.commit
-            print(json_msg)
-            url = ""
-            resp = requests.post(url, data=json_msg)
+            print("json msg type----",type(json_msg))
+            print("json dump msg type----",type(json.dumps(json_msg)))
+            url = "http://192.168.43.19:5000/execution_endpoint"
+            headers = {'Content-Type':'application/json'}
+            resp = requests.post(url, data=json.dumps(json_msg),headers=headers)
+            print("response___", resp)
             print(self.get_header_value(message, fix.MsgType()))
         else:
             # raise error

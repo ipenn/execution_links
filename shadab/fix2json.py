@@ -44,7 +44,7 @@ def fix2json(fix_msg):
 			equi_json[inv_config_dict[entity[0]]] = entity[1]
 
 	#print equi_json
-	return str(equi_json)
+	return equi_json
 
 
 

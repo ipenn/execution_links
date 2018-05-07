@@ -7,32 +7,32 @@ def validate_json(json_msg):
     :param json_msg: a fix message
     :return: 0 (invalid) or 1 (valid)
     """
-    json_obj = json.loads(json_msg)
+    # json_msg = json.loads(json_msg)
     valid = True
     msg = ""
 
     # test product_id (should be in all caps)
-    if not json_obj["product_id"].isupper():
+    if not json_msg["product_id"].isupper():
         valid = False
         msg += "All not caps; "
 
     # test ask_price (should not be negative)
-    if json_obj["ask_price"] < 0:
+    if json_msg["ask_price"] < 0:
         valid = False
         msg += "ask price is negative; "
 
      # test total_qty (should not be negative)
-    if json_obj["total_qty"] <= 0:
+    if json_msg["total_qty"] <= 0:
         valid = False
         msg += "total quantity is <= 0; "
 
     # test type (should be 1, 2, 3, or 4)
-    if json_obj["type"] not in (1, 2, 3, 4):
+    if json_msg["type"] not in (8, 9):
         valid = False
         msg += "type invalid; "
 
     # test side (should be 0 or 1)
-    if json_obj["side"] not in (0, 1):
+    if json_msg["side"] not in (1, 2):
         valid = False
         msg += "side invalid; "
 
