@@ -1,0 +1,17 @@
+new
+{'OrderId': 1, 'OrderCancelReject': 112, 'ExecType': 'A', 'user_id': 'EXECUTOR', 'ExecID': 1, 'OrdStatus': '0', 'CumQty': 0, 'CheckSum': 28, 'TargetCompID': 'CLIENT1', 'LeavesQty': 0, 'MsgSeqNum': 2, 'IOI': 0, 'order_stamp': '20180506-09:40:24.736', 'type': 8, 'side': 1, 'ClOrdID': 1, 'product_id': 'SMBL'}
+
+replace
+{'OrderId': 2, 'OrderCancelReject': 112, 'ExecType': 'A', 'user_id': 'EXECUTOR', 'ExecID': 2, 'OrdStatus': '0', 'CumQty': 0, 'CheckSum': 22, 'TargetCompID': 'CLIENT1', 'LeavesQty': 0, 'MsgSeqNum': 3, 'IOI': 0, 'order_stamp': '20180506-10:04:34.715', 'type': 8, 'side': 1, 'ClOrdID': 2, 'product_id': 'SMBL'}
+
+cancel
+{'OrderId': 3, 'OrderCancelReject': 124, 'ExecType': 4, 'user_id': 'EXECUTOR', 'ExecID': 3, 'OrdStatus': 4, 'CumQty': 0, 'CheckSum': 33, 'OrigClOrdId': 1, 'TargetCompID': 'CLIENT1', 'LeavesQty': 0, 'MsgSeqNum': 4, 'IOI': 0, 'order_stamp': '20180506-09:40:27.379', 'total_qty': 100, 'type': 8, 'side': 1, 'ClOrdID': 3, 'product_id': 'SMBL'}
+
+partial
+{'OrderId': 1, 'OrderCancelReject': 122, 'ExecType': 'F', 'user_id': 'EXECUTOR', 'ExecID': 1, 'OrdStatus': 1, 'CumQty': 0, 'CheckSum': 169, 'TargetCompID': 'CLIENT1', 'LastPx': 0, 'LastShares': 0, 'MsgSeqNum': 2, 'LeavesQty': 0, 'IOI': 0, 'order_stamp': '20180506-10:01:55.900', 'type': 8, 'side': 1, 'ClOrdID': 1, 'product_id': 'SMBL'}
+
+reject
+{'OrderId': 2, 'OrderCancelReject': 118, 'ExecType': 8, 'user_id': 'EXECUTOR', 'ExecID': 2, 'OrdStatus': 8, 'CumQty': 0, 'CheckSum': 18, 'TargetCompID': 'CLIENT1', 'LeavesQty': 0, 'MsgSeqNum': 3, 'IOI': 0, 'order_stamp': '20180506-10:01:59.519', 'OrdRejReason': 0, 'type': 8, 'side': 1, 'ClOrdID': 2, 'product_id': 'SMBL'}
+
+executed 
+{'OrderId': 1, 'OrderCancelReject': 122, 'ExecType': 'F', 'user_id': 'EXECUTOR', 'ExecID': 1, 'OrdStatus': 2, 'CumQty': 0, 'CheckSum': 168, 'TargetCompID': 'CLIENT1', 'LastPx': 0, 'LastShares': 0, 'MsgSeqNum': 2, 'LeavesQty': 0, 'IOI': 0, 'order_stamp': '20180506-10:04:31.721', 'type': 8, 'side': 1, 'ClOrdID': 1, 'product_id': 'SMBL'}

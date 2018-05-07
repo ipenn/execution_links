@@ -1,6 +1,9 @@
 fix_version: 4.4
 dlm: '|'
 tag_dict: 
+  LastPx: 31
+  LastShares: 32
+  OrdRejReason: 103
   TransactTime: 60
   OrdStatus: 39
   OrdType: 40
@@ -14,7 +17,7 @@ tag_dict:
   MsgSeqNum: 34
   TargetCompID: 56
   type: 35
-  order_id: 37
+  OrderId: 37
   total_qty: 38
   ask_price: 44
   user_id: 49

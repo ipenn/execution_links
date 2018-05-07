@@ -4,11 +4,17 @@ import time
 import quickfix44 as fix44
 import fix2json as f2j
 import validate as val
+import connection as conn
+
+app, db, Order = conn.init_conn()
 
 class Application(fix.Application):
     
     orderID = 0
     mdReqID = 0
+
+    # def __init__(self, Order):
+    #     self.db = Order
 
     def onCreate(self, sessionID):
         print('Application - onCreate', sessionID)
@@ -46,9 +52,33 @@ class Application(fix.Application):
         json_msg = f2j.fix2json(message_str)
         status, error_msg = val.validate_json(json_msg)
         if status:
+            OrdStatus = json_msg["OrdStatus"]
+            if(OrdStatus == '0'): # new
+                order = Order.query.filter_by(order_id=json_msg['ClOrdID']).first()
+                order.status = json_msg["OrdStatus"]  #only when notification from ME received
+                db.session.commit
+            elif(OrdStatus == '4'): # cancelled
+                order = Order.query.filter_by(order_id=json_msg['ClOrdID']).first()
+                order.status = json_msg["OrdStatus"]  #only when notification from ME received
+                db.session.commit
+                order = Order.query.filter_by(order_id=json_msg['OrigClOrdId']).first()
+                order.status = '4' 
+                db.session.commit
+            elif(OrdStatus == '1'): # partially filled
+                order = Order.query.filter_by(order_id=json_msg['ClOrdID']).first()
+                order.status = '1'
+                db.session.commit
+            elif(OrdStatus == '8'): # rejected 
+                order = Order.query.filter_by(order_id=json_msg['ClOrdID']).first()
+                order.status = '8'
+                db.session.commit                
+            elif(OrdStatus == '2'): # filled
+                order = Order.query.filter_by(order_id=json_msg['ClOrdID']).first()
+                order.status = '2'
+                db.session.commit
             print(json_msg)
-            # call OME API
-            ## TODO
+            url = ""
+            resp = requests.post(url, data=json_msg)
             print(self.get_header_value(message, fix.MsgType()))
         else:
             # raise error
